@@ -1,23 +1,36 @@
-const btn = document.querySelector(".btn-analisa");
-const overlay = document.getElementById("magicOverlay");
+const btnMagic = document.getElementById("btnMagic");
+const loading = document.getElementById("loading");
+const result = document.getElementById("result");
+const closeResult = document.getElementById("closeResult");
+const input = document.getElementById("usuario");
 
-btn.addEventListener("click", () => {
-    
-    // ativa tela mágica
-    overlay.classList.remove("hidden");
+// 🚀 CLIQUE NO BOTÃO
+btnMagic.addEventListener("click", () => {
 
-    // simula “magia carregando”
+    const user = input.value.trim();
+
+    if (user === "") {
+        alert("Digite um usuário primeiro ✨");
+        return;
+    }
+
+    // 🔮 mostra loading mágico
+    loading.classList.remove("hidden");
+
+    // simula IA analisando
     setTimeout(() => {
-        overlay.classList.add("show");
-    }, 200);
 
-    // depois mostra resultado fake (por enquanto)
-    setTimeout(() => {
-        alert("Aqui virá: quem não te segue de volta 👀");
-        
-        // fecha magia depois
-        overlay.classList.remove("show");
-        overlay.classList.add("hidden");
+        loading.classList.add("hidden");
+
+        // mostra resultado
+        result.classList.remove("hidden");
 
     }, 2500);
+
+});
+
+
+// ❌ FECHAR RESULTADO
+closeResult.addEventListener("click", () => {
+    result.classList.add("hidden");
 });
