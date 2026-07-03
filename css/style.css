@@ -3,3 +3,12 @@
 @import url("input.css");
 @import url("button.css");
 @import url("animations.css");
+
+body {
+    font-family: 'Poppins', sans-serif;
+}
+
+h1 {
+    font-family: 'Cinzel', serif;
+    letter-spacing: 1px;
+}
