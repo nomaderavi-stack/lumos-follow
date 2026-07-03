@@ -4,57 +4,57 @@ const result = document.getElementById("result");
 const closeResult = document.getElementById("closeResult");
 const usuarioInput = document.getElementById("usuario");
 
-const loadingText = [
-  "Iniciando scanner de IA...",
-  "Analisando seguidores...",
-  "Detectando padrões de engajamento...",
-  "Comparando follow graph...",
-  "Identificando não seguidores...",
-  "Finalizando relatório..."
+const fakeDatabase = [
+  "@ghost_user",
+  "@fake_followback",
+  "@inativo_01",
+  "@nao_te_sigo",
+  "@random_girl",
+  "@bot_instagram",
+  "@user_active"
 ];
 
+function gerarResultado(usuario) {
+  // simula IA filtrando quem "não segue de volta"
+  return fakeDatabase
+    .filter(() => Math.random() > 0.4)
+    .slice(0, 3)
+    .map(u => `🚫 ${u} não te segue de volta`);
+}
+
 btn.addEventListener("click", () => {
-  const user = usuarioInput.value || "@usuario";
+  const usuario = usuarioInput.value || "@usuario";
 
+  // loading ON
   loading.classList.remove("hidden");
-  result.classList.add("hidden");
 
-  let i = 0;
-  let progress = 0;
+  setTimeout(() => {
+    loading.classList.add("hidden");
 
-  const interval = setInterval(() => {
-    document.querySelector("#loading p").textContent = loadingText[i];
-    i = (i + 1) % loadingText.length;
+    const lista = gerarResultado(usuario);
 
-    progress += Math.floor(Math.random() * 18);
+    // limpa resultados antigos
+    const box = result.querySelector(".box");
+    box.innerHTML = `
+      <h1>Resultado Lumos</h1>
+    `;
 
-    if (progress >= 100) {
-      progress = 100;
-      clearInterval(interval);
+    lista.forEach(item => {
+      const p = document.createElement("p");
+      p.textContent = item;
+      box.appendChild(p);
+    });
 
-      setTimeout(() => {
-        loading.classList.add("hidden");
+    const btnClose = document.createElement("button");
+    btnClose.id = "closeResult";
+    btnClose.textContent = "Fechar";
+    box.appendChild(btnClose);
 
-        // gera lista fake dinâmica
-        const users = [
-          `${user}_ghost1`,
-          `${user}_inactive2`,
-          `${user}_bot3`,
-          `${user}_oldfollow4`
-        ];
+    btnClose.addEventListener("click", () => {
+      result.classList.add("hidden");
+    });
 
-        result.querySelector(".box").innerHTML = `
-          <h1>Resultado Lumos AI</h1>
-          ${users.map(u => `<p>🚫 ${u} não te segue de volta</p>`).join("")}
-          <button id="closeResult">Fechar</button>
-        `;
+    result.classList.remove("hidden");
 
-        document.getElementById("closeResult").addEventListener("click", () => {
-          result.classList.add("hidden");
-        });
-
-        result.classList.remove("hidden");
-      }, 800);
-    }
-  }, 600);
+  }, 2500);
 });
