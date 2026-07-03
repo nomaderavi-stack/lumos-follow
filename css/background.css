@@ -1,1 +1,39 @@
 /* Background Lumos */
+/* Lumos Follow - Background */
+
+body{
+    background:#06040d;
+    overflow-x:hidden;
+    position:relative;
+}
+
+/* Fundo mágico */
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+
+    background:
+        radial-gradient(circle at 20% 20%, rgba(180,70,255,.18), transparent 35%),
+        radial-gradient(circle at 80% 30%, rgba(255,120,0,.12), transparent 30%),
+        radial-gradient(circle at 50% 80%, rgba(140,0,255,.16), transparent 35%),
+        linear-gradient(180deg,#090414,#05030a);
+
+    z-index:-3;
+}
+
+/* Brilho suave */
+body::after{
+    content:"";
+    position:fixed;
+    inset:0;
+
+    background:
+        radial-gradient(circle, rgba(255,255,255,.04) 1px, transparent 1px);
+
+    background-size:60px 60px;
+
+    opacity:.4;
+
+    z-index:-2;
+}
