@@ -2,59 +2,79 @@ const btn = document.getElementById("btnMagic");
 const loading = document.getElementById("loading");
 const result = document.getElementById("result");
 const closeResult = document.getElementById("closeResult");
-const usuarioInput = document.getElementById("usuario");
+const input = document.getElementById("usuario");
 
-const fakeDatabase = [
-  "@ghost_user",
-  "@fake_followback",
-  "@inativo_01",
-  "@nao_te_sigo",
-  "@random_girl",
-  "@bot_instagram",
-  "@user_active"
+// lista fake estilo "scanner de IA"
+const fakeUsers = [
+  "@usuario1",
+  "@usuario2",
+  "@usuario3",
+  "@usuario4",
+  "@usuario5",
+  "@usuario6",
+  "@usuario7"
 ];
 
-function gerarResultado(usuario) {
-  // simula IA filtrando quem "não segue de volta"
-  return fakeDatabase
-    .filter(() => Math.random() > 0.4)
-    .slice(0, 3)
-    .map(u => `🚫 ${u} não te segue de volta`);
+// animação de texto "digitando"
+function typeText(element, text, speed = 50) {
+  element.innerHTML = "";
+  let i = 0;
+
+  const typing = setInterval(() => {
+    element.innerHTML += text[i];
+    i++;
+    if (i >= text.length) clearInterval(typing);
+  }, speed);
+}
+
+// gera resultados aleatórios
+function generateResults() {
+  const shuffled = fakeUsers.sort(() => 0.5 - Math.random());
+  const count = Math.floor(Math.random() * 4) + 2; // 2 a 5 resultados
+  return shuffled.slice(0, count);
 }
 
 btn.addEventListener("click", () => {
-  const usuario = usuarioInput.value || "@usuario";
+  const user = input.value || "@usuario";
 
-  // loading ON
+  // abre loading
   loading.classList.remove("hidden");
+
+  const loadingText = loading.querySelector("p");
+  typeText(loadingText, "Analisando seguidores com IA... 🔮");
 
   setTimeout(() => {
     loading.classList.add("hidden");
 
-    const lista = gerarResultado(usuario);
+    const users = generateResults();
 
-    // limpa resultados antigos
+    // monta HTML dos resultados
     const box = result.querySelector(".box");
+
     box.innerHTML = `
       <h1>Resultado Lumos</h1>
+      ${users
+        .map(
+          (u) =>
+            `<p>🚫 ${u} não te segue de volta</p>`
+        )
+        .join("")}
+      <button id="closeResult">Fechar</button>
     `;
 
-    lista.forEach(item => {
-      const p = document.createElement("p");
-      p.textContent = item;
-      box.appendChild(p);
-    });
-
-    const btnClose = document.createElement("button");
-    btnClose.id = "closeResult";
-    btnClose.textContent = "Fechar";
-    box.appendChild(btnClose);
-
-    btnClose.addEventListener("click", () => {
-      result.classList.add("hidden");
-    });
+    // reativa botão fechar (porque recriamos o HTML)
+    document
+      .getElementById("closeResult")
+      .addEventListener("click", () => {
+        result.classList.add("hidden");
+      });
 
     result.classList.remove("hidden");
 
   }, 2500);
+});
+
+// fechar modal (fallback inicial)
+closeResult.addEventListener("click", () => {
+  result.classList.add("hidden");
 });
