@@ -1,18 +1,13 @@
-const botao = document.querySelector(".btn-analisar");
-const usuario = document.getElementById("usuario");
-const resultado = document.getElementById("resultado");
+const btn = document.getElementById("btnMagic");
+const overlay = document.getElementById("overlay");
 
-botao.addEventListener("click", () => {
+btn.addEventListener("click", () => {
 
-    if (usuario.value.trim() === "") {
-        resultado.innerHTML = "<p>⚠️ Digite um @usuário.</p>";
-        return;
-    }
+    overlay.classList.remove("hidden");
 
-    resultado.innerHTML = `
-        <h2>🔎 Analisando perfil...</h2>
-        <p>Usuário: <strong>${usuario.value}</strong></p>
-        <p>Em breve o Lumos Follow mostrará quem não segue você de volta.</p>
-    `;
+    setTimeout(() => {
+        overlay.classList.add("hidden");
+        alert("Aqui virá: quem não te segue de volta 👀");
+    }, 2000);
 
 });
