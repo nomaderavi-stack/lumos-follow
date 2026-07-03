@@ -10,11 +10,7 @@ body{
     justify-content:center;
     align-items:center;
 
-    background:#06040d;
-    overflow-x:hidden;
-    position:relative;
-
-    font-family:Arial, Helvetica, sans-serif;
+    padding:20px; /* <-- ESSENCIAL */
 }
 
 /* Fundo mágico */
