@@ -1,34 +1,26 @@
-const btnMagic = document.getElementById("btnMagic");
-const magic = document.getElementById("magic");
-const magicText = document.getElementById("magicText");
+const btn = document.getElementById("btnMagic");
+const overlay = document.getElementById("magicOverlay");
 const result = document.getElementById("result");
 const closeResult = document.getElementById("closeResult");
-const input = document.getElementById("usuario");
+const statusText = document.getElementById("statusText");
 
-btnMagic.addEventListener("click", () => {
+btn.addEventListener("click", () => {
 
-    const user = input.value.trim();
+    overlay.classList.remove("hidden");
 
-    if (!user) {
-        alert("Digite um usuário ✨");
-        return;
-    }
-
-    // 🔮 ativa magia
-    magic.classList.remove("hidden");
+    // sequência da magia
+    setTimeout(() => {
+        statusText.innerText = "Analisando seguidores...";
+    }, 1200);
 
     setTimeout(() => {
-        magicText.innerText = "Analisando seguidores...";
-    }, 1000);
+        statusText.innerText = "Detectando não seguidores...";
+    }, 2500);
 
     setTimeout(() => {
-        magicText.innerText = "Detectando não seguidores...";
-    }, 2000);
-
-    setTimeout(() => {
-        magic.classList.add("hidden");
+        overlay.classList.add("hidden");
         result.classList.remove("hidden");
-    }, 3000);
+    }, 4000);
 
 });
 
