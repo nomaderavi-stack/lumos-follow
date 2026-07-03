@@ -1,19 +1,23 @@
-const btn = document.getElementById("btnMagic");
-const loading = document.getElementById("loading");
-const result = document.getElementById("result");
-const closeResult = document.getElementById("closeResult");
+const btn = document.querySelector(".btn-analisa");
+const overlay = document.getElementById("magicOverlay");
 
 btn.addEventListener("click", () => {
+    
+    // ativa tela mágica
+    overlay.classList.remove("hidden");
 
-loading.classList.remove("hidden");
+    // simula “magia carregando”
+    setTimeout(() => {
+        overlay.classList.add("show");
+    }, 200);
 
-setTimeout(() => {
-    loading.classList.add("hidden");
-    result.classList.remove("hidden");
-}, 2500);
+    // depois mostra resultado fake (por enquanto)
+    setTimeout(() => {
+        alert("Aqui virá: quem não te segue de volta 👀");
+        
+        // fecha magia depois
+        overlay.classList.remove("show");
+        overlay.classList.add("hidden");
 
-});
-
-closeResult.addEventListener("click", () => {
-result.classList.add("hidden");
+    }, 2500);
 });
