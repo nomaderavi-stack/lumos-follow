@@ -14,4 +14,5 @@ botao.addEventListener("click", () => {
         <p>Usuário: <strong>${usuario.value}</strong></p>
         <p>Em breve o Lumos Follow mostrará quem não segue você de volta.</p>
     `;
+
 });
