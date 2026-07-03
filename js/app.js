@@ -1,4 +1,3 @@
-Criando js/app.js
 const botao = document.querySelector(".btn-analisar");
 const usuario = document.getElementById("usuario");
 const resultado = document.getElementById("resultado");
