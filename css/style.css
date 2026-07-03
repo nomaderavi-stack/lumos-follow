@@ -1,76 +1,76 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+margin: 0;
+padding: 0;
+box-sizing: border-box;
 }
 
 body {
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-family: 'Cinzel', serif;
-    background: radial-gradient(circle at top, #2b0a4a, #05010a);
-    overflow: hidden;
+height: 100vh;
+display: flex;
+justify-content: center;
+align-items: center;
+font-family: 'Cinzel', serif;
+background: radial-gradient(circle at top, #2b0a4a, #05010a);
+overflow: hidden;
 }
 
-/* CARD */
 .card {
-    width: 90%;
-    max-width: 500px;
-    background: rgba(10, 10, 20, 0.85);
-    border: 1px solid rgba(180, 70, 255, 0.3);
-    border-radius: 20px;
-    padding: 30px;
-    text-align: center;
-    color: white;
+width: 90%;
+max-width: 500px;
+background: rgba(10,10,20,0.85);
+border: 1px solid rgba(180,70,255,0.3);
+border-radius: 20px;
+padding: 30px;
+text-align: center;
+color: white;
 }
 
-.card p {
-    margin: 15px 0;
-    color: #cfc7ff;
-}
-
-/* INPUT */
 input {
-    width: 100%;
-    padding: 12px;
-    margin-top: 10px;
-    border-radius: 10px;
-    border: none;
-    outline: none;
+width: 100%;
+padding: 12px;
+margin-top: 10px;
+border-radius: 10px;
+border: none;
 }
 
-/* BOTÃO */
 button {
-    width: 100%;
-    margin-top: 15px;
-    padding: 12px;
-    border: none;
-    border-radius: 12px;
-    background: linear-gradient(90deg, #b446ff, #ff6fd8);
-    color: white;
-    font-weight: bold;
-    cursor: pointer;
+width: 100%;
+margin-top: 15px;
+padding: 12px;
+border: none;
+border-radius: 12px;
+background: linear-gradient(90deg,#b446ff,#ff6fd8);
+color: white;
+font-weight: bold;
+cursor: pointer;
 }
 
 /* OVERLAY */
 .overlay {
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.9);
-    display: flex;
-    justify-content: center;
-    align-items: center;
+position: fixed;
+inset: 0;
+background: rgba(0,0,0,0.92);
+display: flex;
+justify-content: center;
+align-items: center;
+animation: fadeIn 0.3s ease;
 }
 
-.overlay h1 {
-    font-size: 80px;
-    color: white;
-    text-shadow: 0 0 20px #b446ff;
+.box {
+text-align: center;
+color: white;
 }
 
-/* ESCONDER */
+.box h1 {
+font-size: 60px;
+text-shadow: 0 0 20px #b446ff;
+}
+
 .hidden {
-    display: none;
+display: none;
+}
+
+@keyframes fadeIn {
+from { opacity: 0; }
+to { opacity: 1; }
 }
