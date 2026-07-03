@@ -1,61 +1,51 @@
-const btn = document.getElementById("btnMagic");
-const loading = document.getElementById("loading");
-const result = document.getElementById("result");
-const closeResult = document.getElementById("closeResult");
-const usuarioInput = document.getElementById("usuario");
+document.addEventListener("DOMContentLoaded", () => {
 
-// trava de segurança anti-bug
-let isRunning = false;
+  const btn = document.getElementById("btnMagic");
+  const loading = document.getElementById("loading");
+  const result = document.getElementById("result");
+  const resultBox = document.getElementById("resultBox");
+  const closeResult = document.getElementById("closeResult");
+  const usuario = document.getElementById("usuario");
 
-btn.addEventListener("click", () => {
-  if (isRunning) return; // impede spam de clique
-  isRunning = true;
+  let isRunning = false;
 
-  const usuario = usuarioInput.value.trim();
+  btn.addEventListener("click", () => {
+    if (isRunning) return;
 
-  // validação básica
-  if (!usuario) {
-    alert("Digite um usuário primeiro ✨");
-    isRunning = false;
-    return;
-  }
+    const user = usuario.value.trim();
+    if (!user) {
+      alert("Digite um usuário ✨");
+      return;
+    }
 
-  // limpa resultado anterior (evita bug visual)
-  const oldResults = result.querySelectorAll("p");
-  oldResults.forEach(el => el.remove());
+    isRunning = true;
 
-  // mostra loading
-  loading.classList.remove("hidden");
+    // limpa resultados antigos
+    const old = resultBox.querySelectorAll("p");
+    old.forEach(e => e.remove());
 
-  // simula "IA scanner"
-  setTimeout(() => {
-    loading.classList.add("hidden");
-    result.classList.remove("hidden");
+    loading.classList.remove("hidden");
 
-    // gera resultados fake estilo Lumos
-    const fakeUsers = [
-      "usuario1",
-      "usuario2",
-      "usuario3"
-    ];
+    setTimeout(() => {
+      loading.classList.add("hidden");
+      result.classList.remove("hidden");
 
-    fakeUsers.forEach((u, index) => {
-      setTimeout(() => {
-        const p = document.createElement("p");
-        p.textContent = `🚫 @${u} não te segue de volta`;
-        result.querySelector(".box").insertBefore(p, closeResult);
-      }, index * 400);
-    });
+      const fake = ["usuario1", "usuario2", "usuario3"];
 
-    isRunning = false;
-  }, 2000);
-});
+      fake.forEach((u, i) => {
+        setTimeout(() => {
+          const p = document.createElement("p");
+          p.textContent = `🚫 @${u} não te segue de volta`;
+          resultBox.insertBefore(p, closeResult);
+        }, i * 300);
+      });
 
-// fechar modal corretamente
-closeResult.addEventListener("click", () => {
-  result.classList.add("hidden");
+      isRunning = false;
+    }, 1800);
+  });
 
-  // limpa lista ao fechar (evita duplicação bugada)
-  const ps = result.querySelectorAll("p");
-  ps.forEach(el => el.remove());
+  closeResult.addEventListener("click", () => {
+    result.classList.add("hidden");
+  });
+
 });
