@@ -1,13 +1,19 @@
 const btn = document.getElementById("btnMagic");
-const overlay = document.getElementById("overlay");
+const loading = document.getElementById("loading");
+const result = document.getElementById("result");
+const closeResult = document.getElementById("closeResult");
 
 btn.addEventListener("click", () => {
 
-    overlay.classList.remove("hidden");
+loading.classList.remove("hidden");
 
-    setTimeout(() => {
-        overlay.classList.add("hidden");
-        alert("Aqui virá: quem não te segue de volta 👀");
-    }, 2000);
+setTimeout(() => {
+    loading.classList.add("hidden");
+    result.classList.remove("hidden");
+}, 2500);
 
+});
+
+closeResult.addEventListener("click", () => {
+result.classList.add("hidden");
 });
