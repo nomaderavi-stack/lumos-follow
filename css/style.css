@@ -1,118 +1,69 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
 body {
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    margin: 0;
     font-family: 'Cinzel', serif;
-    background: radial-gradient(circle at top, #2b0a4a, #05010a);
-    overflow: hidden;
+    background: #0a0014;
+    color: white;
+    text-align: center;
 }
 
-/* CARD */
 .card {
-    width: 90%;
-    max-width: 500px;
-    background: rgba(10,10,20,0.85);
-    border: 1px solid rgba(180,70,255,0.3);
-    border-radius: 20px;
-    padding: 30px;
-    text-align: center;
-    color: white;
-    box-shadow: 0 0 40px rgba(0,0,0,0.5);
+    margin-top: 120px;
+    padding: 20px;
 }
 
 input {
-    width: 100%;
     padding: 12px;
-    margin-top: 10px;
+    width: 80%;
     border-radius: 10px;
     border: none;
-    outline: none;
+    margin-top: 10px;
 }
 
 button {
-    width: 100%;
     margin-top: 15px;
     padding: 12px;
+    width: 85%;
     border: none;
     border-radius: 12px;
-    background: linear-gradient(90deg,#b446ff,#ff6fd8);
+    background: linear-gradient(90deg, #a855f7, #ec4899);
     color: white;
     font-weight: bold;
-    cursor: pointer;
-    transition: 0.3s;
 }
 
-button:hover {
-    transform: scale(1.03);
-}
-
-/* 🔮 MAGIA */
-.magic {
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.93);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    color: white;
-    z-index: 9999;
-}
-
-.wand {
-    font-size: 60px;
-    animation: float 1s infinite alternate;
-    filter: drop-shadow(0 0 10px #b446ff);
-}
-
-.magic h1 {
-    font-size: 60px;
-    text-shadow: 0 0 25px #b446ff;
-    margin-top: 10px;
-}
-
-.magic p {
-    margin-top: 10px;
-    opacity: 0.8;
-}
-
-/* RESULTADO */
+/* OVERLAY */
 .overlay {
     position: fixed;
     inset: 0;
     background: rgba(0,0,0,0.92);
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
+    justify-content: center;
 }
 
-.box {
-    text-align: center;
-    color: white;
-}
-
-.card-result {
-    background: rgba(180,70,255,0.15);
-    border: 1px solid rgba(180,70,255,0.4);
-    padding: 12px;
-    margin: 8px 0;
-    border-radius: 10px;
-}
-
-/* hidden */
 .hidden {
     display: none;
 }
 
-/* animações */
-@keyframes float {
-    from { transform: translateY(0); }
-    to { transform: translateY(-12px); }
+/* LUMOS TEXTO */
+.lumosTitle {
+    font-size: 60px;
+    color: white;
+    text-shadow: 0 0 25px #a855f7;
+    margin-bottom: 20px;
+}
+
+/* SCANNER ANIMATION */
+.scanner {
+    width: 80%;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, #a855f7, transparent);
+    animation: scan 1s linear infinite;
+    margin-bottom: 20px;
+}
+
+@keyframes scan {
+    0% { transform: translateY(-100px); opacity: 0; }
+    50% { opacity: 1; }
+    100% { transform: translateY(200px); opacity: 0; }
 }
