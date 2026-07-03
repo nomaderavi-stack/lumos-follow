@@ -1,36 +1,37 @@
 const btnMagic = document.getElementById("btnMagic");
-const loading = document.getElementById("loading");
+const magic = document.getElementById("magic");
+const magicText = document.getElementById("magicText");
 const result = document.getElementById("result");
 const closeResult = document.getElementById("closeResult");
 const input = document.getElementById("usuario");
 
-// 🚀 CLIQUE NO BOTÃO
 btnMagic.addEventListener("click", () => {
 
     const user = input.value.trim();
 
-    if (user === "") {
-        alert("Digite um usuário primeiro ✨");
+    if (!user) {
+        alert("Digite um usuário ✨");
         return;
     }
 
-    // 🔮 mostra loading mágico
-    loading.classList.remove("hidden");
+    // 🔮 ativa magia
+    magic.classList.remove("hidden");
 
-    // simula IA analisando
     setTimeout(() => {
+        magicText.innerText = "Analisando seguidores...";
+    }, 1000);
 
-        loading.classList.add("hidden");
+    setTimeout(() => {
+        magicText.innerText = "Detectando não seguidores...";
+    }, 2000);
 
-        // mostra resultado
+    setTimeout(() => {
+        magic.classList.add("hidden");
         result.classList.remove("hidden");
-
-    }, 2500);
+    }, 3000);
 
 });
 
-
-// ❌ FECHAR RESULTADO
 closeResult.addEventListener("click", () => {
     result.classList.add("hidden");
 });
