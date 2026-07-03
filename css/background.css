@@ -1,10 +1,21 @@
-/* Background Lumos */
-/* Lumos Follow - Background */
+/* ==========================
+   Lumos Follow - Background
+========================== */
 
 body{
+    margin:0;
+    padding:0;
+    min-height:100vh;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
     background:#06040d;
     overflow-x:hidden;
     position:relative;
+
+    font-family:Arial, Helvetica, sans-serif;
 }
 
 /* Fundo mágico */
@@ -29,11 +40,9 @@ body::after{
     inset:0;
 
     background:
-        radial-gradient(circle, rgba(255,255,255,.04) 1px, transparent 1px);
+        radial-gradient(circle, rgba(120,0,255,.12), transparent 60%);
 
-    background-size:60px 60px;
-
-    opacity:.4;
-
+    filter:blur(80px);
     z-index:-2;
+    pointer-events:none;
 }
