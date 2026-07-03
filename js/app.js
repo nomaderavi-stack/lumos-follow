@@ -1,29 +1,60 @@
 const btn = document.getElementById("btnMagic");
-const overlay = document.getElementById("magicOverlay");
+const loading = document.getElementById("loading");
 const result = document.getElementById("result");
 const closeResult = document.getElementById("closeResult");
-const statusText = document.getElementById("statusText");
+const usuarioInput = document.getElementById("usuario");
+
+const loadingText = [
+  "Iniciando scanner de IA...",
+  "Analisando seguidores...",
+  "Detectando padrões de engajamento...",
+  "Comparando follow graph...",
+  "Identificando não seguidores...",
+  "Finalizando relatório..."
+];
 
 btn.addEventListener("click", () => {
+  const user = usuarioInput.value || "@usuario";
 
-    overlay.classList.remove("hidden");
+  loading.classList.remove("hidden");
+  result.classList.add("hidden");
 
-    // sequência da magia
-    setTimeout(() => {
-        statusText.innerText = "Analisando seguidores...";
-    }, 1200);
+  let i = 0;
+  let progress = 0;
 
-    setTimeout(() => {
-        statusText.innerText = "Detectando não seguidores...";
-    }, 2500);
+  const interval = setInterval(() => {
+    document.querySelector("#loading p").textContent = loadingText[i];
+    i = (i + 1) % loadingText.length;
 
-    setTimeout(() => {
-        overlay.classList.add("hidden");
+    progress += Math.floor(Math.random() * 18);
+
+    if (progress >= 100) {
+      progress = 100;
+      clearInterval(interval);
+
+      setTimeout(() => {
+        loading.classList.add("hidden");
+
+        // gera lista fake dinâmica
+        const users = [
+          `${user}_ghost1`,
+          `${user}_inactive2`,
+          `${user}_bot3`,
+          `${user}_oldfollow4`
+        ];
+
+        result.querySelector(".box").innerHTML = `
+          <h1>Resultado Lumos AI</h1>
+          ${users.map(u => `<p>🚫 ${u} não te segue de volta</p>`).join("")}
+          <button id="closeResult">Fechar</button>
+        `;
+
+        document.getElementById("closeResult").addEventListener("click", () => {
+          result.classList.add("hidden");
+        });
+
         result.classList.remove("hidden");
-    }, 4000);
-
-});
-
-closeResult.addEventListener("click", () => {
-    result.classList.add("hidden");
+      }, 800);
+    }
+  }, 600);
 });
