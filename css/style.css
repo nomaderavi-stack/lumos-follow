@@ -114,3 +114,13 @@ body::after{
     transform:scale(1.03);
     filter:brightness(1.1);
 }
+
+.card{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+}
+
+.btn-analisa{
+    text-align:center;
+}
