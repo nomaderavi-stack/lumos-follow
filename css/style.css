@@ -1,76 +1,118 @@
 * {
-margin: 0;
-padding: 0;
-box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 body {
-height: 100vh;
-display: flex;
-justify-content: center;
-align-items: center;
-font-family: 'Cinzel', serif;
-background: radial-gradient(circle at top, #2b0a4a, #05010a);
-overflow: hidden;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Cinzel', serif;
+    background: radial-gradient(circle at top, #2b0a4a, #05010a);
+    overflow: hidden;
 }
 
+/* CARD */
 .card {
-width: 90%;
-max-width: 500px;
-background: rgba(10,10,20,0.85);
-border: 1px solid rgba(180,70,255,0.3);
-border-radius: 20px;
-padding: 30px;
-text-align: center;
-color: white;
+    width: 90%;
+    max-width: 500px;
+    background: rgba(10,10,20,0.85);
+    border: 1px solid rgba(180,70,255,0.3);
+    border-radius: 20px;
+    padding: 30px;
+    text-align: center;
+    color: white;
+    box-shadow: 0 0 40px rgba(0,0,0,0.5);
 }
 
 input {
-width: 100%;
-padding: 12px;
-margin-top: 10px;
-border-radius: 10px;
-border: none;
+    width: 100%;
+    padding: 12px;
+    margin-top: 10px;
+    border-radius: 10px;
+    border: none;
+    outline: none;
 }
 
 button {
-width: 100%;
-margin-top: 15px;
-padding: 12px;
-border: none;
-border-radius: 12px;
-background: linear-gradient(90deg,#b446ff,#ff6fd8);
-color: white;
-font-weight: bold;
-cursor: pointer;
+    width: 100%;
+    margin-top: 15px;
+    padding: 12px;
+    border: none;
+    border-radius: 12px;
+    background: linear-gradient(90deg,#b446ff,#ff6fd8);
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
 }
 
-/* OVERLAY */
+button:hover {
+    transform: scale(1.03);
+}
+
+/* 🔮 MAGIA */
+.magic {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.93);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    z-index: 9999;
+}
+
+.wand {
+    font-size: 60px;
+    animation: float 1s infinite alternate;
+    filter: drop-shadow(0 0 10px #b446ff);
+}
+
+.magic h1 {
+    font-size: 60px;
+    text-shadow: 0 0 25px #b446ff;
+    margin-top: 10px;
+}
+
+.magic p {
+    margin-top: 10px;
+    opacity: 0.8;
+}
+
+/* RESULTADO */
 .overlay {
-position: fixed;
-inset: 0;
-background: rgba(0,0,0,0.92);
-display: flex;
-justify-content: center;
-align-items: center;
-animation: fadeIn 0.3s ease;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.92);
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .box {
-text-align: center;
-color: white;
+    text-align: center;
+    color: white;
 }
 
-.box h1 {
-font-size: 60px;
-text-shadow: 0 0 20px #b446ff;
+.card-result {
+    background: rgba(180,70,255,0.15);
+    border: 1px solid rgba(180,70,255,0.4);
+    padding: 12px;
+    margin: 8px 0;
+    border-radius: 10px;
 }
 
+/* hidden */
 .hidden {
-display: none;
+    display: none;
 }
 
-@keyframes fadeIn {
-from { opacity: 0; }
-to { opacity: 1; }
+/* animações */
+@keyframes float {
+    from { transform: translateY(0); }
+    to { transform: translateY(-12px); }
 }
