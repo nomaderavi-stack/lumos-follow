@@ -7,79 +7,70 @@ document.addEventListener("DOMContentLoaded", () => {
   const result = document.getElementById("result");
 
   const loadingText = document.getElementById("loadingText");
-  const progress = document.getElementById("progress");
-
   const resultList = document.getElementById("resultList");
   const closeResult = document.getElementById("closeResult");
 
+  let running = false;
+
   btn.addEventListener("click", () => {
+
+    if (running) return;
 
     const user = input.value.trim();
 
     if (!user) {
-      alert("Digite um usuário 👀");
+      alert("Digite um usuário");
       return;
     }
 
-    resultList.innerHTML = "";
+    running = true;
 
+    resultList.innerHTML = "";
     loading.classList.remove("hidden");
 
-    let percent = 0;
-
-    const scan = setInterval(() => {
-
-      percent += 5;
-
-      loadingText.textContent = "IA analisando seguidores...";
-      progress.textContent = percent + "%";
-
-      if (percent >= 100) {
-        clearInterval(scan);
-
-        setTimeout(() => {
-          loading.classList.add("hidden");
-          showResults(user);
-        }, 400);
-      }
-
-    }, 120);
-
-  });
-
-  function showResults(user) {
-
-    result.classList.remove("hidden");
-
-    const fakeData = [
-      "ghost_mode_01",
-      "inactive_user_22",
-      "silent_follower_77",
-      "unknown_profile_09",
-      "bot_like_account_12",
-      "old_follower_44"
+    let textIndex = 0;
+    const texts = [
+      "Conectando ao Instagram...",
+      "Analisando seguidores...",
+      "Detectando não seguidores...",
+      "Finalizando relatório..."
     ];
-
-    let i = 0;
 
     const interval = setInterval(() => {
 
-      if (i >= fakeData.length) {
+      loadingText.textContent = texts[textIndex];
+      textIndex++;
+
+      if (textIndex >= texts.length) {
         clearInterval(interval);
-        return;
+
+        setTimeout(() => {
+
+          loading.classList.add("hidden");
+          result.classList.remove("hidden");
+
+          const fake = [
+            "ghost_user01",
+            "inactive_22",
+            "bot_follow_33",
+            "old_user_44"
+          ];
+
+          fake.forEach(u => {
+            const div = document.createElement("div");
+            div.classList.add("result-item");
+            div.textContent = `🚫 @${u} não te segue de volta`;
+            resultList.appendChild(div);
+          });
+
+          running = false;
+
+        }, 600);
       }
 
-      const div = document.createElement("div");
-      div.classList.add("result-item");
+    }, 800);
 
-      div.textContent = `🚫 @${user}_${fakeData[i]} não te segue de volta`;
-
-      resultList.appendChild(div);
-
-      i++;
-
-    }, 350);
-  }
+  });
 
   closeResult.addEventListener("click", () => {
     result.classList.add("hidden");
