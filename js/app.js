@@ -1,57 +1,85 @@
 document.addEventListener("DOMContentLoaded", () => {
 
   const btn = document.getElementById("btnMagic");
+  const input = document.getElementById("usuario");
+
   const loading = document.getElementById("loading");
   const result = document.getElementById("result");
-  const closeResult = document.getElementById("closeResult");
-  const input = document.getElementById("usuario");
-  const resultList = document.getElementById("resultList");
+
   const loadingText = document.getElementById("loadingText");
+  const progress = document.getElementById("progress");
+
+  const resultList = document.getElementById("resultList");
+  const closeResult = document.getElementById("closeResult");
 
   btn.addEventListener("click", () => {
 
     const user = input.value.trim();
 
     if (!user) {
-      alert("Digite um usuário primeiro 👀");
+      alert("Digite um usuário 👀");
       return;
     }
 
-    // reset UI
     resultList.innerHTML = "";
 
     loading.classList.remove("hidden");
 
-    let dots = 0;
+    let percent = 0;
+
     const scan = setInterval(() => {
-      dots = (dots + 1) % 4;
-      loadingText.textContent = "Escaneando seguidores" + ".".repeat(dots);
-    }, 400);
 
-    setTimeout(() => {
+      percent += 5;
 
-      clearInterval(scan);
+      loadingText.textContent = "IA analisando seguidores...";
+      progress.textContent = percent + "%";
 
-      loading.classList.add("hidden");
-      result.classList.remove("hidden");
+      if (percent >= 100) {
+        clearInterval(scan);
 
-      // “IA FAKE” consistente
-      const fakeUsers = [
-        `${user}_fake1`,
-        `${user}_ghost2`,
-        `${user}_inactive3`
-      ];
+        setTimeout(() => {
+          loading.classList.add("hidden");
+          showResults(user);
+        }, 400);
+      }
 
-      fakeUsers.forEach(u => {
-        const div = document.createElement("div");
-        div.classList.add("result-item");
-        div.textContent = `🚫 @${u} não te segue de volta`;
-        resultList.appendChild(div);
-      });
-
-    }, 2500);
+    }, 120);
 
   });
+
+  function showResults(user) {
+
+    result.classList.remove("hidden");
+
+    const fakeData = [
+      "ghost_mode_01",
+      "inactive_user_22",
+      "silent_follower_77",
+      "unknown_profile_09",
+      "bot_like_account_12",
+      "old_follower_44"
+    ];
+
+    let i = 0;
+
+    const interval = setInterval(() => {
+
+      if (i >= fakeData.length) {
+        clearInterval(interval);
+        return;
+      }
+
+      const div = document.createElement("div");
+      div.classList.add("result-item");
+
+      div.textContent = `🚫 @${user}_${fakeData[i]} não te segue de volta`;
+
+      resultList.appendChild(div);
+
+      i++;
+
+    }, 350);
+  }
 
   closeResult.addEventListener("click", () => {
     result.classList.add("hidden");
