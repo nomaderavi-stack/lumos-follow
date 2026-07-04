@@ -12,41 +12,40 @@
 
 <body>
 
-  <div class="container">
+  <div class="card">
+    <h1>Lumos Follow</h1>
 
-    <div class="card">
-      <h1>Lumos Follow</h1>
-      <p>Scanner de seguidores com inteligência avançada</p>
+    <p>Analise quem não te segue de volta com IA mágica ✨</p>
 
-      <input id="usuario" type="text" placeholder="@usuario">
+    <input id="usuario" type="text" placeholder="@usuario">
 
-      <button id="btnMagic">Iniciar Scanner ✨</button>
-    </div>
-
+    <button id="btnMagic">
+      Aperte e veja a magia ✨
+    </button>
   </div>
 
   <!-- LOADING -->
   <div id="loading" class="overlay hidden">
     <div class="box">
-      <h1>LUMOS IA</h1>
-      <p id="loadingText">Inicializando...</p>
-      <p id="progress">0%</p>
+      <h1>LUMOS</h1>
+      <p id="loadingText">Iniciando scanner...</p>
     </div>
   </div>
 
-  <!-- RESULT -->
+  <!-- RESULTADO -->
   <div id="result" class="overlay hidden">
     <div class="box">
-      <h1>RESULTADO LUMOS</h1>
+
+      <h1>Resultado</h1>
 
       <div id="resultList"></div>
 
       <button id="closeResult">Fechar</button>
+
     </div>
   </div>
 
   <script src="./js/app.js"></script>
 
 </body>
-
 </html>
