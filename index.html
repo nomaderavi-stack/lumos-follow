@@ -1,35 +1,31 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Lumos Follow</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lumos Clean</title>
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-  <div class="container">
+  <main class="card">
 
     <h1>LUMOS FOLLOW</h1>
 
-    <p>
-      Lumos revela quem não te segue de volta e ajuda você a limpar seu Instagram com inteligência.
-    </p>
+    <p>Descubra quem não te segue de volta.</p>
 
-    <input id="username" placeholder="@usuario">
+    <input id="user" placeholder="@usuario">
 
-    <button id="btn">
-      Aperte e veja a magia acontecer ✨
-    </button>
+    <button id="btn">Aperte e veja a magia acontecer ✨</button>
 
-  </div>
+  </main>
 
-  <div id="modal" class="modal hidden">
-    <h2>RESULTADOS LUMOS</h2>
-    <div id="lista"></div>
+  <section id="modal" class="modal hidden">
+    <h2>RESULTADOS</h2>
+    <div id="resultados"></div>
     <button onclick="fechar()">Fechar</button>
-  </div>
+  </section>
 
   <script src="app.js"></script>
 </body>
