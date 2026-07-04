@@ -1,79 +1,35 @@
-document.addEventListener("DOMContentLoaded", () => {
+const btn = document.getElementById("btnMagic");
+const loading = document.getElementById("loading");
+const result = document.getElementById("result");
+const closeResult = document.getElementById("closeResult");
+const input = document.getElementById("usuario");
+const resultList = document.getElementById("resultList");
 
-  const btn = document.getElementById("btnMagic");
-  const input = document.getElementById("usuario");
+btn.addEventListener("click", () => {
 
-  const loading = document.getElementById("loading");
-  const result = document.getElementById("result");
+  const user = input.value;
 
-  const loadingText = document.getElementById("loadingText");
-  const resultList = document.getElementById("resultList");
-  const closeResult = document.getElementById("closeResult");
+  if (!user) {
+    alert("Digite um usuário");
+    return;
+  }
 
-  let running = false;
+  loading.classList.remove("hidden");
 
-  btn.addEventListener("click", () => {
+  setTimeout(() => {
 
-    if (running) return;
+    loading.classList.add("hidden");
+    result.classList.remove("hidden");
 
-    const user = input.value.trim();
+    resultList.innerHTML = `
+      <p>🚫 @usuario1 não te segue de volta</p>
+      <p>🚫 @usuario2 não te segue de volta</p>
+    `;
 
-    if (!user) {
-      alert("Digite um usuário");
-      return;
-    }
+  }, 2000);
 
-    running = true;
+});
 
-    resultList.innerHTML = "";
-    loading.classList.remove("hidden");
-
-    let textIndex = 0;
-    const texts = [
-      "Conectando ao Instagram...",
-      "Analisando seguidores...",
-      "Detectando não seguidores...",
-      "Finalizando relatório..."
-    ];
-
-    const interval = setInterval(() => {
-
-      loadingText.textContent = texts[textIndex];
-      textIndex++;
-
-      if (textIndex >= texts.length) {
-        clearInterval(interval);
-
-        setTimeout(() => {
-
-          loading.classList.add("hidden");
-          result.classList.remove("hidden");
-
-          const fake = [
-            "ghost_user01",
-            "inactive_22",
-            "bot_follow_33",
-            "old_user_44"
-          ];
-
-          fake.forEach(u => {
-            const div = document.createElement("div");
-            div.classList.add("result-item");
-            div.textContent = `🚫 @${u} não te segue de volta`;
-            resultList.appendChild(div);
-          });
-
-          running = false;
-
-        }, 600);
-      }
-
-    }, 800);
-
-  });
-
-  closeResult.addEventListener("click", () => {
-    result.classList.add("hidden");
-  });
-
+closeResult.addEventListener("click", () => {
+  result.classList.add("hidden");
 });
