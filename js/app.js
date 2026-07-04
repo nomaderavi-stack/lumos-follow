@@ -3,45 +3,54 @@ document.addEventListener("DOMContentLoaded", () => {
   const btn = document.getElementById("btnMagic");
   const loading = document.getElementById("loading");
   const result = document.getElementById("result");
-  const resultBox = document.getElementById("resultBox");
   const closeResult = document.getElementById("closeResult");
-  const usuario = document.getElementById("usuario");
-
-  let isRunning = false;
+  const input = document.getElementById("usuario");
+  const resultList = document.getElementById("resultList");
+  const loadingText = document.getElementById("loadingText");
 
   btn.addEventListener("click", () => {
-    if (isRunning) return;
 
-    const user = usuario.value.trim();
+    const user = input.value.trim();
+
     if (!user) {
-      alert("Digite um usuário ✨");
+      alert("Digite um usuário primeiro 👀");
       return;
     }
 
-    isRunning = true;
-
-    // limpa resultados antigos
-    const old = resultBox.querySelectorAll("p");
-    old.forEach(e => e.remove());
+    // reset UI
+    resultList.innerHTML = "";
 
     loading.classList.remove("hidden");
 
+    let dots = 0;
+    const scan = setInterval(() => {
+      dots = (dots + 1) % 4;
+      loadingText.textContent = "Escaneando seguidores" + ".".repeat(dots);
+    }, 400);
+
     setTimeout(() => {
+
+      clearInterval(scan);
+
       loading.classList.add("hidden");
       result.classList.remove("hidden");
 
-      const fake = ["usuario1", "usuario2", "usuario3"];
+      // “IA FAKE” consistente
+      const fakeUsers = [
+        `${user}_fake1`,
+        `${user}_ghost2`,
+        `${user}_inactive3`
+      ];
 
-      fake.forEach((u, i) => {
-        setTimeout(() => {
-          const p = document.createElement("p");
-          p.textContent = `🚫 @${u} não te segue de volta`;
-          resultBox.insertBefore(p, closeResult);
-        }, i * 300);
+      fakeUsers.forEach(u => {
+        const div = document.createElement("div");
+        div.classList.add("result-item");
+        div.textContent = `🚫 @${u} não te segue de volta`;
+        resultList.appendChild(div);
       });
 
-      isRunning = false;
-    }, 1800);
+    }, 2500);
+
   });
 
   closeResult.addEventListener("click", () => {
