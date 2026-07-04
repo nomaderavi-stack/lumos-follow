@@ -1,35 +1,69 @@
-const btn = document.getElementById("btnMagic");
+const btn = document.getElementById("btn");
+const input = document.getElementById("usuario");
+
 const loading = document.getElementById("loading");
 const result = document.getElementById("result");
-const closeResult = document.getElementById("closeResult");
-const input = document.getElementById("usuario");
-const resultList = document.getElementById("resultList");
+
+const loadingText = document.getElementById("loadingText");
+const list = document.getElementById("list");
+const close = document.getElementById("close");
 
 btn.addEventListener("click", () => {
 
-  const user = input.value;
+  const user = input.value.trim();
 
   if (!user) {
     alert("Digite um usuário");
     return;
   }
 
+  list.innerHTML = "";
+
   loading.classList.remove("hidden");
 
-  setTimeout(() => {
+  let steps = [
+    "Conectando ao Instagram...",
+    "Analisando seguidores...",
+    "Detectando não seguidores...",
+    "Finalizando..."
+  ];
 
-    loading.classList.add("hidden");
-    result.classList.remove("hidden");
+  let i = 0;
 
-    resultList.innerHTML = `
-      <p>🚫 @usuario1 não te segue de volta</p>
-      <p>🚫 @usuario2 não te segue de volta</p>
-    `;
+  let interval = setInterval(() => {
 
-  }, 2000);
+    loadingText.textContent = steps[i];
+    i++;
+
+    if (i >= steps.length) {
+      clearInterval(interval);
+
+      setTimeout(() => {
+
+        loading.classList.add("hidden");
+        result.classList.remove("hidden");
+
+        const fake = [
+          "ghost_01",
+          "inactive_22",
+          "bot_33",
+          "user_fake_44"
+        ];
+
+        fake.forEach(u => {
+          const div = document.createElement("div");
+          div.classList.add("item");
+          div.textContent = `🚫 @${u} não te segue de volta`;
+          list.appendChild(div);
+        });
+
+      }, 500);
+    }
+
+  }, 700);
 
 });
 
-closeResult.addEventListener("click", () => {
+close.addEventListener("click", () => {
   result.classList.add("hidden");
 });
