@@ -1,69 +1,40 @@
-const btn = document.getElementById("btn");
-const input = document.getElementById("usuario");
+document.addEventListener("DOMContentLoaded", () => {
+  const btn = document.getElementById("analisarBtn");
 
-const loading = document.getElementById("loading");
-const result = document.getElementById("result");
+  btn.addEventListener("click", () => {
+    const username = document.getElementById("username").value;
 
-const loadingText = document.getElementById("loadingText");
-const list = document.getElementById("list");
-const close = document.getElementById("close");
-
-btn.addEventListener("click", () => {
-
-  const user = input.value.trim();
-
-  if (!user) {
-    alert("Digite um usuário");
-    return;
-  }
-
-  list.innerHTML = "";
-
-  loading.classList.remove("hidden");
-
-  let steps = [
-    "Conectando ao Instagram...",
-    "Analisando seguidores...",
-    "Detectando não seguidores...",
-    "Finalizando..."
-  ];
-
-  let i = 0;
-
-  let interval = setInterval(() => {
-
-    loadingText.textContent = steps[i];
-    i++;
-
-    if (i >= steps.length) {
-      clearInterval(interval);
-
-      setTimeout(() => {
-
-        loading.classList.add("hidden");
-        result.classList.remove("hidden");
-
-        const fake = [
-          "ghost_01",
-          "inactive_22",
-          "bot_33",
-          "user_fake_44"
-        ];
-
-        fake.forEach(u => {
-          const div = document.createElement("div");
-          div.classList.add("item");
-          div.textContent = `🚫 @${u} não te segue de volta`;
-          list.appendChild(div);
-        });
-
-      }, 500);
+    if (!username) {
+      alert("Digite um usuário");
+      return;
     }
 
-  }, 700);
-
+    analisarPerfil(username);
+  });
 });
 
-close.addEventListener("click", () => {
-  result.classList.add("hidden");
-});
+function analisarPerfil(user) {
+  const resultado = document.getElementById("resultado");
+  const lista = document.getElementById("lista");
+
+  lista.innerHTML = "";
+
+  // simulação (depois conectamos API real)
+  const dados = [
+    user + "_fake1",
+    user + "_fake2",
+    user + "_fake3"
+  ];
+
+  dados.forEach(u => {
+    const div = document.createElement("div");
+    div.textContent = "@" + u + " não te segue de volta";
+    lista.appendChild(div);
+  });
+
+  resultado.classList.remove("hidden");
+}
+
+function fechar() {
+  document.getElementById("resultado").classList.add("hidden");
+}
