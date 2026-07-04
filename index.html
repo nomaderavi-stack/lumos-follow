@@ -2,46 +2,40 @@
 <html lang="pt-BR">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Lumos Follow</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lumos Follow</title>
 
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="./css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="./css/style.css">
 </head>
 
 <body>
 
-  <div class="card">
-    <h1>Lumos Follow</h1>
+    <!-- CARD PRINCIPAL -->
+    <div class="card">
 
-    <p>Analise quem não te segue de volta.</p>
+        <h1>Lumos Follow</h1>
 
-    <input id="usuario" type="text" placeholder="@usuario">
+        <p>
+            Lumos revela quem não te segue de volta e ajuda você a limpar seu Instagram com inteligência.
+        </p>
 
-    <button id="btnMagic">
-      Aperte e veja a magia ✨
-    </button>
-  </div>
+        <input type="text" id="usuario" placeholder="@usuario">
 
-  <div id="loading" class="overlay hidden">
-    <div class="box">
-      <h1>LUMOS</h1>
-      <p>Analisando perfil...</p>
+        <button id="btnMagic">
+            Aperte e veja a magia acontecer
+        </button>
+
     </div>
-  </div>
 
-  <div id="result" class="overlay hidden">
-    <div class="box">
-      <h1>Resultado</h1>
-
-      <div id="resultList"></div>
-
-      <button id="closeResult">Fechar</button>
+    <!-- OVERLAY MAGIA -->
+    <div id="overlay" class="overlay hidden">
+        <h1>LUMOS</h1>
     </div>
-  </div>
 
-  <script src="./js/app.js"></script>
+    <script src="./js/app.js"></script>
 
 </body>
 </html>
